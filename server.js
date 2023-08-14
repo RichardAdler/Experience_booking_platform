@@ -11,6 +11,11 @@ app.use(express.urlencoded({ extended: false}));
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
+const expRoutes = require('./server/routes/exp');
+app.use('/', expRoutes);
+
+
+
 app.listen(port, () => {
     console.log(`The application is running on the following port: ${port}.`);
 })
