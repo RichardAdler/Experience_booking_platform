@@ -4,7 +4,7 @@ const db = require('../../config/dbConnection');
 exports.places = (req, res) => {
     try {
         db.get(`SELECT * FROM experiences`, (rows, err) => {
-            res.render('index', {activities: rows});
+            res.render('home', {activities: rows});
         });
         
     } catch (error) {
@@ -21,7 +21,7 @@ exports.searchByRegion = (req, res) => {
                 if (rows.length === 0) {
                     return res.render('404');
                 }
-                res.render('index', {activities: rows});
+                res.render('home', {activities: rows});
             });
     } catch (error) {
         console.error(err);

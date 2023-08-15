@@ -1,0 +1,26 @@
+/* General Styles */
+body {
+    position: relative;
+    margin: 0;
+    padding-bottom: 6rem; /* height of the footer */
+    min-height: 100%;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    position: absolute;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+    height: 2rem; /* Set the height of your footer */
+}
+
+.container {
+    flex: 1;
+}
+
+
+
+
+
