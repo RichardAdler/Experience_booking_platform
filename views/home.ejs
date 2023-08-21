@@ -22,7 +22,8 @@
             <!-- Browse Experiences -->
             <section class="browse-experiences my-5">
                 <h2 class="mb-4">Browse Experiences</h2>
-                <!-- Placeholder for experiences list -->
+                 <!-- Including carousel -->
+                 <%- include('experiences.ejs') %>    
             </section>
 
             <!-- Booking Form -->
@@ -31,7 +32,7 @@
                 <form action="/submit-booking" method="post" class="form-group">
                     <label for="experience" class="form-label">Choose an experience:</label>
                     <select name="experience" id="experience" class="form-control mb-3">
-                        <!-- Placeholder for experience options -->
+                        
                     </select>
                     <label for="date" class="form-label">Choose a date:</label>
                     <input type="date" name="date" id="date" class="form-control mb-3">
@@ -42,7 +43,7 @@
             <!-- Testimonials -->
             <section class="testimonials my-5">
                 <h2 class="mb-4">What Our Clients Say</h2>
-                <!-- Placeholder for testimonials -->
+                <%- include('partials/home/testimonials.ejs') %>
             </section>
 
             <!-- Contact Section -->
