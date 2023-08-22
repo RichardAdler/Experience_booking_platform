@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Contact Us</title>
+</head>
+<body>
+    <header>
+        <!-- Including the navbar partial -->
+        <%- include('partials/navbar.ejs') %>
+    </header>
+                <!-- Contact Section -->
+                <section class="contact my-5">
+                    <h2 class="mb-4">Contact Us</h2>
+                    <p>If you have any questions or need assistance, reach out to us!</p>
+                    <form action="/submit-contact" method="post" class="form-group">
+                        <label for="name" class="form-label">Name:</label>
+                        <input type="text" name="name" id="name" class="form-control mb-3">
+                        <label for="email" class="form-label">Email:</label>
+                        <input type="email" name="email" id="email" class="form-control mb-3">
+                        <label for="message" class="form-label">Message:</label>
+                        <textarea name="message" id="message" class="form-control mb-3"></textarea>
+                        <input type="submit" value="Send Message" class="btn btn-primary">
+                    </form>
+                </section>
+                <!-- Including the footer partial -->
+        <%- include('partials/footer.ejs') %>
+</body>
+</html>

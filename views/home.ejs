@@ -11,20 +11,45 @@
             <!-- Including the navbar partial -->
             <%- include('partials/navbar.ejs') %>
         </header>
+        <div class="jumbotron jumbotron-fluid bg-info text-white">
+            <div class="container">
+                <h1 class="display-4">Welcome to Our Experiences</h1>
+                <p class="lead">Explore and book the most unforgettable experiences around the globe.</p>
+            </div>
+        </div>
         <div class="container my-5">
-            <!-- Hero Section -->
+            <!-- Browse Experiences -->
             <section class="hero text-center my-5">
                 <h2 class="display-4">Featured Experience</h2>
-                <p class="lead">Experience the thrill of skydiving over the Grand Canyon!</p>
-                <button class="btn btn-primary">Book Now</button>
-            </section>
-            
-            <!-- Browse Experiences -->
-            <section class="browse-experiences my-5">
-                <h2 class="mb-4">Browse Experiences</h2>
-                 <!-- Including carousel -->
-                 
-                 <%- include('experiences.ejs') %>    
+                <p class="lead">See below the most popular attractions</p>
+                <div id="experienceCarousel" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                
+                        <% topExperiences.forEach((experience, index) => { %>
+                            <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
+                                <!-- Content for each experience -->
+                                <!-- Using a placeholder image from the internet as an example -->
+                                <img src="/img/<%= experience.exp_name %>.jpg" class="d-block w-100" alt="<%= experience.exp_name %>">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5><%= experience.exp_name %></h5>
+                                    <p><%= experience.exp_description %></p>
+                                </div>
+                            </div>
+                        <% }); %>
+                
+                    </div>
+                
+                    <!-- Carousel controls -->
+                    <a class="carousel-control-prev" href="#experienceCarousel" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#experienceCarousel" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+                
                  
             </section>
 
@@ -48,20 +73,6 @@
                 <%- include('partials/home/testimonials.ejs') %>
             </section>
 
-            <!-- Contact Section -->
-            <section class="contact my-5">
-                <h2 class="mb-4">Contact Us</h2>
-                <p>If you have any questions or need assistance, reach out to us!</p>
-                <form action="/submit-contact" method="post" class="form-group">
-                    <label for="name" class="form-label">Name:</label>
-                    <input type="text" name="name" id="name" class="form-control mb-3">
-                    <label for="email" class="form-label">Email:</label>
-                    <input type="email" name="email" id="email" class="form-control mb-3">
-                    <label for="message" class="form-label">Message:</label>
-                    <textarea name="message" id="message" class="form-control mb-3"></textarea>
-                    <input type="submit" value="Send Message" class="btn btn-primary">
-                </form>
-            </section>
         </div>
 
         <!-- Including the footer partial -->
@@ -72,5 +83,6 @@
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script src="/js/home.js"></script>
+
     </body>
 </html>

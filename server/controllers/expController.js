@@ -29,13 +29,36 @@ exports.exp = (req, res) => {
 exports.searchByRegion = (req, res) => {
     try {
         const { region } = req.params;
-        db.get(`SELECT * FROM experiences WHERE region = ?`, [region],
+        db.all(`SELECT * FROM experiences WHERE region = ?`, [region],
             (err, rows) =>{
                 if (rows.length === 0) {
-                    return res.render('404');
+                    console.log(rows);
+                    return res.render('404');                   
                 }
                 res.json({activities: rows});
             });
+    } catch (error) {
+        console.error(err);
+        res.render('500');
+    }
+};
+
+
+exports.getTopExperiences = (req, res) => {
+    try {
+        db.all(`SELECT * FROM experiences LIMIT 4`, (err, rows) => {
+            res.render('home', {topExperiences: rows});
+        });
+        
+    } catch (error) {
+        console.error(err);
+        res.render('500');
+    }
+};
+
+exports.contact = (req, res) => {
+    try {
+         res.render('contact');
     } catch (error) {
         console.error(err);
         res.render('500');

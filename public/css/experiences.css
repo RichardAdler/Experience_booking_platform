@@ -19,28 +19,85 @@ footer {
 .container {
     flex: 1;
 }
+
+/* Table Styling */
+.table {
+    width: 100%;
+    table-layout: fixed;
+}
+
 .table thead, 
 .table tbody tr {
-    display: table; /* Make table rows behave like rows again */
-    width: 100%;    /* Set width to full container width */
-    table-layout: fixed; /* Fix the layout to ensure columns align between thead and tbody */
+    display: table;
+    width: 100%;
+    table-layout: fixed;
 }
-/* Table Styling */
+
 .table thead th {
     background-color: #4CAF50;
     color: white;
 }
+
+
 .table tbody {
-    display: block;  /* Change display to block to apply height and overflow */
-    height: 60vh;   /* Adjust this value based on the height of 10 rows */
-    overflow-y: auto; /* Enable vertical scrolling */
+    display: block;
+    height: 60vh;
+    overflow-y: auto;
 }
+
 .table tbody tr:hover {
     background-color: #f5f5f5;
 }
+
 .table tbody td {
     padding: 6px 10px;
+    box-sizing: border-box; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
+
+.table tbody::-webkit-scrollbar {
+    display: none;  /* Hide scrollbar for Chrome, Safari and Opera */
+}
+
+.table tbody {
+    -ms-overflow-style: none;  /* Hide scrollbar for IE and Edge */
+}
+/* Fixed column widths */
+.table th:nth-child(1),
+.table td:nth-child(1) {
+    width: 215px;
+}
+
+.table th:nth-child(2),
+.table td:nth-child(2) {
+    width: 170px;
+}
+.table th:nth-child(5),
+.table td:nth-child(5) {
+    width: 100px;
+}
+.table th:nth-child(6),
+.table td:nth-child(6) {
+    width: 100px;
+}
+.table th:nth-child(7),
+.table td:nth-child(7) {  /* Assuming the description is the 8th column */
+    white-space: normal;  /* Override the previous nowrap setting */
+    width: 350px;     /* You can adjust this as per your design */
+}
+.table th:nth-child(8),
+.table td:nth-child(8) {
+    width: 100px;
+    text-align: center;
+}
+.table th:nth-child(9),
+.table td:nth-child(9) {
+    width: 150px;
+    text-align: center;
+}
+/* ... Define the widths for other columns as needed ... */
 
 /* Button Styling */
 .btn-primary {
@@ -56,17 +113,37 @@ footer {
     max-width: 95%;
     margin: 0 auto;
     padding: 20px;
-    
-    overflow-x: auto;  /* Enable horizontal scrolling if table width exceeds container width */
+    overflow-x: auto;
 }
 
 .btn-primary:hover {
     background-color: #0056b3;
 }
+
 .jumbotron {
-    background-image: url('../img/City_break_attractions.png'); 
+    position: relative;
+    background-image: url('../img/City_break_attractions.png');
     background-size: cover;
     background-position: center;
     text-align: right;
-    height: 400px;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.jumbotron::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.35);
+    z-index: 1;
+}
+
+.jumbotron > * {
+    position: relative;
+    z-index: 2;
 }
