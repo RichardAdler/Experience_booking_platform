@@ -2,7 +2,7 @@ const db = require('../../config/dbConnection');
 
 exports.home = (req, res) => {
     try {
-        db.get(`SELECT * FROM experiences`, (err, rows) => {
+        db.all(`SELECT * FROM experiences`, (err, rows) => {
             res.render('home', {activities: rows});
         });
         
@@ -14,7 +14,7 @@ exports.home = (req, res) => {
 
 exports.exp = (req, res) => {
     try {
-        db.get(`SELECT * FROM experiences`, (err, rows) => {
+        db.all(`SELECT * FROM experiences`, (err, rows) => {
             res.render('experiences', {activities: rows});
         });
         
@@ -23,6 +23,8 @@ exports.exp = (req, res) => {
         res.render('500');
     }
 };
+
+
 
 exports.searchByRegion = (req, res) => {
     try {

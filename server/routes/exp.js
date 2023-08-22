@@ -5,7 +5,7 @@ const expController = require('../controllers/expController')
 
 //Home page render
 router.get('/', expController.home);
-//Home exp
+//Experiences page render
 router.get('/experiences', expController.exp);
 //Search activity for a Region
 router.get('/search/:region', expController.searchByRegion);
