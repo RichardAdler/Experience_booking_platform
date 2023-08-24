@@ -11,6 +11,11 @@ app.use(express.urlencoded({ extended: false}));
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
+app.use((req, res, next) => {
+    res.locals.req = req;
+    next();
+});
+
 const expRoutes = require('./server/routes/exp');
 app.use('/', expRoutes);
 

@@ -1,0 +1,37 @@
+/* Base Navbar Styling */
+.navbar {
+    font-size: 1rem;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow for depth */
+    padding: 0.5rem 1rem;  /* Adjusts the padding for a bit more spacing */
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.75rem;
+    padding: 10px 15px;
+}
+
+.navbar-nav {
+    letter-spacing: 0.05em;  /* Adds a little spacing between letters for a refined look */
+}
+
+.nav-item {
+    margin-left: 15px;  /* Spaces out the nav items */
+}
+
+.nav-link {
+    transition: color 0.3s ease;  /* Smooth transition for hover color */
+    padding: 5px 10px;  /* Padding around each nav link for a larger clickable area */
+    font-size: 1rem;
+}
+
+.nav-link:hover, .nav-link:focus {
+    color: #f7dc8e !important;  /* Change color to Bootstrap's yellow on hover/focus */
+    background-color: rgba(255, 193, 7, 0.1);  /* A light yellow background on hover/focus */
+}
+
+/* Adjustments for Active Class */
+.nav-item.active .nav-link {
+    color: #fff;  /* Active link color */
+    background-color: rgba(255, 255, 255, 0.1);  /* Slight white background for active link */
+}

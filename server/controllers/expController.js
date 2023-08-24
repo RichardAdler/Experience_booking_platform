@@ -3,39 +3,95 @@ const db = require('../../config/dbConnection');
 exports.home = (req, res) => {
     try {
         db.all(`SELECT * FROM experiences`, (err, rows) => {
-            res.render('home', {activities: rows});
+            res.render('home', {activities: rows, req: req});
         });
-        
     } catch (error) {
         console.error(err);
         res.render('500');
     }
 };
 
+
+
+
 exports.exp = (req, res) => {
     try {
-        db.all(`SELECT * FROM experiences`, (err, rows) => {
-            res.render('experiences', {activities: rows});
-        });
-        
+        const expType = req.query.type;
+        if (expType) {
+            db.all(`SELECT * FROM experiences WHERE exp_type = ?`, [expType], (err, rows) => {
+                if (err) {
+                    console.error(err);
+                    return res.render('500');
+                }
+                res.render('experiences', {activities: rows});
+            });
+        } else {
+            db.all(`SELECT * FROM experiences`, (err, rows) => {
+                if (err) {
+                    console.error(err);
+                    return res.render('500');
+                }
+                res.render('experiences', {activities: rows});
+            });
+        }
     } catch (error) {
-        console.error(err);
+        console.error(error);
         res.render('500');
     }
 };
+
 
 
 
 exports.searchByRegion = (req, res) => {
     try {
         const { region } = req.params;
-        db.get(`SELECT * FROM experiences WHERE region = ?`, [region],
+        db.all(`SELECT * FROM experiences WHERE region = ?`, [region],
             (err, rows) =>{
                 if (rows.length === 0) {
-                    return res.render('404');
+                    console.log(rows);
+                    return res.render('404');                   
                 }
                 res.json({activities: rows});
             });
+    } catch (error) {
+        console.error(err);
+        res.render('500');
+    }
+};
+
+exports.searchByType = (req, res) => {
+    try {
+        const expType = req.body.experience;
+        db.all(`SELECT * FROM experiences WHERE exp_type = ?`, [expType], (err, rows) => {
+            if (err) {
+                console.error(err);
+                return res.render('500');
+            }
+            res.redirect(`/experiences?type=${expType}`);
+        });
+    } catch (error) {
+        console.error(error);
+        res.render('500');
+    }
+};
+
+
+exports.getTopExperiences = (req, res) => {
+    try {
+        db.all(`SELECT * FROM experiences LIMIT 4`, (err, rows) => {
+            res.render('home', {topExperiences: rows});
+        });
+        
+    } catch (error) {
+        console.error(err);
+        res.render('500');
+    }
+};
+
+exports.contact = (req, res) => {
+    try {
+         res.render('contact');
     } catch (error) {
         console.error(err);
         res.render('500');

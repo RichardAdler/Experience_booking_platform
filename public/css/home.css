@@ -6,21 +6,96 @@ body {
     min-height: 100%;
 }
 
-footer {
-    background-color: #333;
-    color: #fff;
-    position: absolute;
-    text-align: center;
-    bottom: 0;
-    width: 100%;
-    height: 2rem; /* Set the height of your footer */
-}
 
 .container {
     flex: 1;
 }
 
+.jumbotron {
+    position: relative;
+    background-image: url('../img/home_hero_img.png'); 
+    background-size: cover;
+    background-position: center;
+    text-align: left;
+    height: 500px;
+    display: flex;            
+    align-items: center;      
+    justify-content: center; 
+}
 
+.jumbotron::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.35);  /* Black overlay with 50% opacity */
+    z-index: 1;
+}
+.jumbotron > * {
+    position: relative;
+    z-index: 2;  /* This ensures the content is displayed above the overlay */
+}
 
+/* Styles for the carousel */
+#experienceCarousel {
+    margin: 40px 0;
+}
 
+#experienceCarousel .carousel-item {
+    height: 450px;
+    position: relative;
+}
 
+#experienceCarousel .carousel-caption {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    z-index: 10;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #fff;
+    text-align: right;
+}
+
+#experienceCarousel .carousel-caption h5 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#experienceCarousel .carousel-caption p {
+    font-size: 18px;
+}
+
+/* Optional styles for carousel indicators */
+#experienceCarousel .carousel-indicators {
+    bottom: -40px;
+}
+
+#experienceCarousel .carousel-indicators li {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+#experienceCarousel .carousel-indicators .active {
+    background-color: white;
+}
+
+#experienceCarousel .carousel-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.25); /* Black overlay with 50% opacity */
+    z-index: 1;
+}
+
+#experienceCarousel .carousel-caption {
+    z-index: 2;  /* Ensuring the text is above the overlay */
+}
