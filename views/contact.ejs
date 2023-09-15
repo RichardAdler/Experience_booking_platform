@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/contact.css"/>
+
     <title>Contact Us</title>
 </head>
 <body>
@@ -17,24 +18,74 @@
             <h1 class="display-4">Contact Us</h1>            
         </div>
     </div>
-    <!-- Contact Section -->
-    <div class="container contact-container">
-        <div class="contact-form">
+<!-- Contact Section -->
+<div class="container contact-container">
+    <!-- Feedback Message -->
+    <div id="feedback-message" class="text-center mb-4"></div>
+    <!-- Feedback Message Ends -->
+    <div class="contact-form">
             <h2 class="mb-4">Contact Form</h2>
             <p>If you have any questions or need assistance, reach out to us!</p>
-            <form action="/submit-contact" method="post" class="form-group">
+            <form action="/submit-contact" id="contact-form" method="post" class="form-group">
                 <label for="name" class="form-label">Name:</label>
                 <input type="text" name="name" id="name" class="form-control mb-3">
                 <label for="email" class="form-label">Email:</label>
                 <input type="email" name="email" id="email" class="form-control mb-3">
                 <label for="message" class="form-label">Message:</label>
                 <textarea name="message" id="message" class="form-control mb-3" rows="5"></textarea>
-                <input type="submit" value="Send Message" class="btn btn-primary">
+                <input type="submit" value="Send Message" class="btn btn-primary center-button">
             </form>
         </div>
     </div>
 
     <!-- Including the footer partial -->
     <%- include('partials/footer.ejs') %>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            document.getElementById('contact-form').addEventListener('submit', function(e) {
+                
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const message = document.getElementById('message').value;
+        
+                
+                e.preventDefault();
+                const formData = new FormData(this);
+                fetch('/submit-contact', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Fetch Response:', data);
+                    if (data.success) {
+                        const messageDiv = document.createElement('div');
+                        messageDiv.innerHTML = '<strong>Success!</strong> Your message was sent successfully!';
+                        messageDiv.classList.add('alert', 'alert-success', 'text-center');  
+                        document.getElementById('contact-form').appendChild(messageDiv);
+                        
+                        // Reloading the page so it removes the message div from the DOM
+                        setTimeout(() => location.reload(), 5000); 
+                    } else {
+                        const messageDiv = document.createElement('div');
+                        messageDiv.innerHTML = '<strong>Error!</strong> ' + data.message;
+                        messageDiv.classList.add('alert', 'alert-danger', 'text-center');  
+                        document.getElementById('contact-form').appendChild(messageDiv); 
+                        setTimeout(() => location.reload(), 3000); 
+                    }
+                })
+                
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            });
+        });
+        
+        
+    </script>
+    
 </body>
 </html>
+            

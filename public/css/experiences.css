@@ -19,6 +19,9 @@ footer {
 .container {
     flex: 1;
 }
+.custom-width {
+    max-width: 60%; 
+}
 
 /* Table Styling */
 .table {
@@ -58,46 +61,58 @@ footer {
 }
 
 .table tbody::-webkit-scrollbar {
-    display: none;  /* Hide scrollbar for Chrome, Safari and Opera */
+    display: none;  /* Hide scrollbar */
 }
 
 .table tbody {
-    -ms-overflow-style: none;  /* Hide scrollbar for IE and Edge */
+    -ms-overflow-style: none;  /* Hide scrollbar */
 }
 /* Fixed column widths */
 .table th:nth-child(1),
 .table td:nth-child(1) {
     width: 215px;
+    max-width: 215px;
+    white-space: normal;
 }
 
 .table th:nth-child(2),
 .table td:nth-child(2) {
+    max-width: 170px;
     width: 170px;
+    white-space: normal;
+}
+.table th:nth-child(3),
+.table td:nth-child(3) {
+    width: 150px;
+    white-space: normal;
+}
+.table th:nth-child(4),
+.table td:nth-child(4) {
+    width: 150px;
+    white-space: normal;
 }
 .table th:nth-child(5),
 .table td:nth-child(5) {
-    width: 100px;
+    width: 120px;
+    white-space: normal;
 }
 .table th:nth-child(6),
 .table td:nth-child(6) {
-    width: 100px;
+    white-space: normal;  
+    width: 300px; 
 }
 .table th:nth-child(7),
-.table td:nth-child(7) {  /* Assuming the description is the 8th column */
-    white-space: normal;  /* Override the previous nowrap setting */
-    width: 350px;     /* You can adjust this as per your design */
+.table td:nth-child(7) {  
+    white-space: normal;  
+    width: 75px;   
+    text-align: center;      
 }
 .table th:nth-child(8),
 .table td:nth-child(8) {
-    width: 100px;
+    white-space: normal;  
+    width: 80px;
     text-align: center;
 }
-.table th:nth-child(9),
-.table td:nth-child(9) {
-    width: 150px;
-    text-align: center;
-}
-/* ... Define the widths for other columns as needed ... */
 
 /* Button Styling */
 .btn-primary {
@@ -147,3 +162,9 @@ footer {
     position: relative;
     z-index: 2;
 }
+
+.thumbnail {
+    width: 300px;
+    height: 300px;
+  }
+  

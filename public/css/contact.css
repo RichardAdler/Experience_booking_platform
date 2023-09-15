@@ -1,13 +1,17 @@
 body {
-    position: relative;
-    margin: 0;
-    padding-bottom: 6rem; /* height of the footer */
+    display: flex;
+    flex-direction: column;
     min-height: 100%;
+    margin: 0;
 }
 
 
 .container {
     flex: 1;
+}
+.center-button {
+    display: block;
+    margin: 0 auto;
 }
 
 .jumbotron {
@@ -29,12 +33,12 @@ body {
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.75);  /* Black overlay with 50% opacity */
+    background-color: rgba(0, 0, 0, 0.75);  
     z-index: 1;
 }
 .jumbotron > * {
     position: relative;
-    z-index: 2;  /* This ensures the content is displayed above the overlay */
+    z-index: 2;  
 } .contact-container {
     min-height: 80vh;
     display: flex;

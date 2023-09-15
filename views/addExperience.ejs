@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+    <link rel="stylesheet" href="/css/addExperiences.css"/>
+    <title>Add New Experience</title>
+</head>
+<body>
+
+<header>
+    <!-- Including the navbar partial -->
+    <%- include('partials/navbar.ejs') %>
+</header>
+
+<div class="jumbotron jumbotron-fluid bg-primary text-white" style="height:800px;">
+    <div class="container">
+        <h1 class="display-4">Add New Experience</h1>
+        <p class="lead">Share new experiences with the community.</p>
+    </div>
+</div>
+<% if (req.session && req.session.authorized) { %>
+    <div id="success-alert" class="alert alert-success text-center" style="display:none;">
+        Your experience has been added successfully.
+    </div>
+    
+    
+    <!-- Display the form if the user is logged in -->
+    <div class="container my-5">
+        <h4 class="map-header">Choose a spot on the map to automatically update the longitude and latitude!</h4> 
+        <div class="row">
+            <div class="col-lg-4">
+        <form id="experienceForm" class="bg-light p-5 rounded" action="/add" enctype="multipart/form-data" >
+            <div class="form-group">
+                <label for="exp_name">Experience Name:</label>
+                <input type="text" name="exp_name" id="exp_name" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="exp_type">Experience Type:</label>
+                <input type="text" name="exp_type" id="exp_type" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="country">Country:</label>
+                <input type="text" name="country" id="country" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="region">Region:</label>
+                <input type="text" name="region" id="region" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="longitude">Longitude:</label>
+                <input type="text" name="longitude" id="longitude" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="latitude">Latitude:</label>
+                <input type="text" name="latitude" id="latitude" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="img_url">Image:</label>
+                <input type="file" name="img_url" id="img_url" class="form-control" accept="image/*">
+              </div>              
+            <div class="form-group">
+                <label for="exp_description">Description:</label>
+                <textarea name="exp_description" id="exp_description" class="form-control" rows="5" required></textarea>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Add Experience</button>
+            </div>            
+        </form>
+    </div>
+    <div class="col-lg-8"> 
+        <div class="map-wrapper">
+            <div id="add-experience-map"></div>
+        </div>
+    </div>
+</div>
+</div>
+<% } else { %>
+    <!-- Display a login required message if the user is not logged in -->
+    <div class="container my-5 d-flex justify-content-center align-items-center" style="height: 60vh;">
+        <p class="text-center-user">Login required to add a new experience.</p>
+    </div>
+    <div class="container my-5">
+        <div class="row justify-content-center"> 
+            <div class="col-lg-8"> 
+                <div class="no-login-map"> 
+                    <div class="map-wrapper">
+                        <div id="add-experience-map"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<% } %>
+
+<!-- Including the footer partial -->
+<%- include('partials/footer.ejs') %>
+
+<script>
+    document.getElementById('experienceForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const formData = new FormData(this);
+
+        fetch('/experiences', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.message) {
+                alert(data.message);
+                location.reload(); 
+            }
+            
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
+</script>
+
+
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+ <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+ <script src="/js/experiences.js"></script>
+ <script src="/js/modalMapHandler.js"></script>
+ <script src="/js/map-script.js"></script>
+</body>
+</html>

@@ -1,10 +1,11 @@
 /* General Styles */
 body {
-    position: relative;
-    margin: 0;
-    padding-bottom: 6rem; /* height of the footer */
+    display: flex;
+    flex-direction: column;
     min-height: 100%;
+    margin: 0;
 }
+
 
 
 .container {
@@ -35,7 +36,7 @@ body {
 }
 .jumbotron > * {
     position: relative;
-    z-index: 2;  /* This ensures the content is displayed above the overlay */
+    z-index: 2; 
 }
 
 /* Styles for the carousel */

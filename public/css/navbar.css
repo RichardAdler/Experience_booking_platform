@@ -2,13 +2,17 @@
 .navbar {
     font-size: 1rem;
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow for depth */
-    padding: 0.5rem 1rem;  /* Adjusts the padding for a bit more spacing */
+    padding: 0.5rem 1rem;  
 }
-
+.brand-img{
+    width: 4%;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
 .navbar-brand {
     font-weight: bold;
     font-size: 1.75rem;
-    padding: 10px 15px;
+    padding: 10px 10px;
 }
 
 .navbar-nav {
@@ -23,6 +27,7 @@
     transition: color 0.3s ease;  /* Smooth transition for hover color */
     padding: 5px 10px;  /* Padding around each nav link for a larger clickable area */
     font-size: 1rem;
+    white-space: nowrap; 
 }
 
 .nav-link:hover, .nav-link:focus {
